@@ -145,7 +145,11 @@ let g:NERDTreeQuitOnOpen = 1
 
 syntax enable
 set t_Co=16
+" solarized options 
 set background=dark
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termcolors = 256
 colorscheme solarized
 
 " Supertab completion should use omni-completion
