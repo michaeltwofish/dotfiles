@@ -39,3 +39,6 @@ setopt rmstarsilent
 setopt nohistverify
 
 export EDITOR=vim
+
+# vim mode
+bindkey -v
