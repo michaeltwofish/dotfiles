@@ -1,8 +1,6 @@
 " .vimrc
-" David Rainsford - david@rainsford.org
-" http://www.rainsford.org
 
-" use vim settings rather than vi settingslkjdsaj
+" use vim settings rather than vi settings
 " this must be first, because it changes other options as a side effect
 set nocompatible
 
@@ -19,7 +17,7 @@ set nopaste
 set pastetoggle=<F2>
 set ruler
 set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%)
-set scrolloff=5 " Keep a little buffer at the edges
+set scrolloff=3 " Keep a little buffer at the edges
 set showcmd
 set textwidth=80
 set visualbell t_vb= " no beeps nor flashes
@@ -65,9 +63,6 @@ if has("autocmd")
     " Set tab to 2 spaces
     au FileType html,css,xml setlocal ts=2 sts=2 sw=2
 
-    " Maps Ctrl-l to a PHP syntax check
-    au FileType php noremap <C-L> :!/usr/bin/env php -l %<CR>
-
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
     " (happens when dropping a file on gvim).
@@ -94,8 +89,6 @@ cmap Wq  wq
 cmap Q   q
 
 map Y y$
-noremap H ^
-noremap L $
 
 let mapleader = ","
 
