@@ -1,3 +1,6 @@
+# Set up completions, needs to be done before omz is sourced https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/dotfiles/zsh/oh-my-zsh
 ZSH_CUSTOM=$HOME/dotfiles/zsh/custom
@@ -11,6 +14,13 @@ ZSH_THEME="dangerous"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias fzfp="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+alias quote="pbpaste | sed -e 's/^/> /' | pbcopy"
+
+# Multi-file move, copy, and link
+autoload -Uz zmv
+alias zcp="zmv -C"
+alias zln="zmv -L"
 
 # Set to this to use case-sensitive completion
 CASE_SENSITIVE="true"
@@ -30,11 +40,23 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git)
+plugins=(
+  aliases
+  aws
+  catimg
+  command-not-found
+  fancy-ctrl-z
+  gh
+  history
+  httpie
+  macos
+  ripgrep
+  steampipe
+)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# Customize to your needs... see https://zsh.sourceforge.io/Doc/Release/Options.html for options
 setopt rmstarsilent
 setopt nohistverify
 
@@ -42,3 +64,30 @@ export EDITOR=vim
 
 # vim mode
 bindkey -v
+
+eval "$(rbenv init -)"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+export PATH="$HOME/bin:$PATH"
+
+PATH="/Users/michael/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/michael/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/michael/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/michael/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/michael/perl5"; export PERL_MM_OPT;
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# command-not-found
+HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]; then
+  source "$HB_CNF_HANDLER";
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
