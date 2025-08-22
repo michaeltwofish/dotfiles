@@ -4,28 +4,6 @@
 " this must be first, because it changes other options as a side effect
 set nocompatible
 
-" Plugins
-
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-
-" List your plugins here
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'preservim/tagbar'
-Plug 'altercation/vim-colors-solarized'
-Plug 'wellle/context.vim'
-
-call plug#end()
-
 " GENERAL SETUP
 set nobackup
 set formatoptions+=l
