@@ -29,3 +29,6 @@
 [submodule "vim/pack/local/start/sleuth"]
 	path = vim/pack/local/start/sleuth
 	url = https://tpope.io/vim/sleuth.git
+[submodule "vim/pack/local/start/context.vim"]
+	path = vim/pack/local/start/context.vim
+	url = https://github.com/wellle/context.vim.git
