@@ -46,7 +46,8 @@ tilde_or_pwd() {
   echo $PWD | sed -e "s/\/Users\/$USER/~/"
 }
 
-export PROMPT='%{$fg[magenta]%}%n@%M %{$fg[green]%}$(tilde_or_pwd)%{$reset_color%}$(git_cwd_info)
+#man zshmisc for options
+export PROMPT='%{$fg[green]%}$(tilde_or_pwd)%{$reset_color%}$(git_cwd_info) %(1j.%%%j.)
 $ARROW%{$reset_color%} '
 export RPROMPT=''
 export LSCOLORS="exfxcxdxbxegedabagacad"

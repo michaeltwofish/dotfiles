@@ -18,6 +18,7 @@ set scrolloff=3 " Keep a little buffer at the edges
 set showcmd
 set textwidth=0
 set visualbell t_vb= " no beeps nor flashes
+set linebreak
 
 " Set grep to use rg so that it doesn't break with `--color`
 set grepprg=rg\ --vimgrep
@@ -27,8 +28,22 @@ set rtp+=/opt/homebrew/bin/fzf
 " Map Git file search to ^p
 nnoremap <C-p> :GFiles<Cr>
 
+" Keep swap, backup and undo files out of the edited file's own directory.
+" The default puts them next to the file, which drops them into Dropbox and
+" other synced folders. Note ~/.vim is a symlink into the dotfiles repo, so
+" these live outside it. The trailing // makes vim build the file name from
+" the full path, so files with the same name don't collide.
+let s:vimstate = expand("~/.local/state/vim")
+for s:dir in ["swap", "backup", "undo"]
+    if !isdirectory(s:vimstate . "/" . s:dir)
+        call mkdir(s:vimstate . "/" . s:dir, "p", 0700)
+    endif
+endfor
+let &directory = s:vimstate . "/swap//"
+let &backupdir = s:vimstate . "/backup//"
+
 if has("persistent_undo")
-    set undodir=~/.vim/undodir
+    let &undodir = s:vimstate . "/undo//"
     set undofile
 endif
 

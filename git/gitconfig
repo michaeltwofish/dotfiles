@@ -1,0 +1,37 @@
+[user]
+	name = Michael C. Harris
+	email = michael@twofishcreative.com
+[github]
+	user = michaeltwofish
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[init]
+	defaultBranch = main
+[commit]
+	verbose = true
+[merge]
+	conflictStyle = zdiff3
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[include]
+	path = ~/dotfiles/git/themes.gitconfig
+[delta]
+	features = woolly-mammoth
+	navigate = true
+	line-numbers = true
+[alias]
+	conflicts = diff --name-only --diff-filter=U --relative
+	diffs = "!git -c pager.diff='delta --side-by-side' diff"
+	switchfzf = "!f() { \
+		        if ! git rev-parse --is-inside-work-tree &>/dev/null; then \
+		            echo 'Error: Not inside a Git repository'; return 1; \
+		        fi; \
+		        branch=$(git branch | sed 's/^..//' | fzf); \
+		        [ -n \"$branch\" ] && git switch \"$branch\"; \
+		    }; f"
+[safe]
+	directory = /Users/michael/peatix/peatix

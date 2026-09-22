@@ -69,7 +69,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 PATH="/Users/michael/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/Users/michael/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -82,12 +82,13 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# command-not-found
-HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
-if [ -f "$HB_CNF_HANDLER" ]; then
-  source "$HB_CNF_HANDLER";
-fi
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# gam
+alias gam="/Users/michael/bin/gam7/gam"
+alias gam="$HOME/bin/gam7/gam"
+
+# aws
+export AWS_PAGER=""

@@ -1,2 +1,4 @@
 vim/.netrwhist
 *.swp
+*.spl
+*.DS_Store
